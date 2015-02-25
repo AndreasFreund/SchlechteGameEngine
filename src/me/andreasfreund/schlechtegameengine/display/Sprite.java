@@ -18,4 +18,12 @@ public class Sprite {
 					frameheight));
 		}
 	}
+	
+	public BufferedImage getFrame(int i){
+		return this.frames.get(i);
+	}
+	
+	public int getFrameCount(){
+		return this.frames.size();
+	}
 }
