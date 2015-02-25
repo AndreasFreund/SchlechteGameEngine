@@ -2,9 +2,9 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="E:/Projekte/Java/libraries/lwjgl/jar/lwjgl.jar">
+	<classpathentry kind="lib" path="E:/Java/libraries/lwjgl/jar/lwjgl.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="file:/E:/Projekte/Java/libraries/lwjgl/doc/"/>
+			<attribute name="javadoc_location" value="file:/E:/Java/libraries/lwjgl/doc/"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="bin"/>

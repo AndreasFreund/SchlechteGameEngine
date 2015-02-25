@@ -1,4 +1,4 @@
-package me.andreasfreund.schlechtegameengine.objects;
+package me.andreasfreund.schlechtegameengine.world;
 
 import java.awt.Graphics;
 
