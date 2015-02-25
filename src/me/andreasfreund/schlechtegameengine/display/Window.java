@@ -54,7 +54,7 @@ public class Window {
 	
 	public boolean isCloseRequested()
 	{
-		return glfwWindowShouldClose(window) == GL11.GL_FALSE;
+		return glfwWindowShouldClose(window) == GL11.GL_TRUE;
 	}
 	
 	public void update()
