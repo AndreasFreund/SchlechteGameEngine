@@ -1,0 +1,19 @@
+package me.andreasfreund.schlechtesgame;
+
+import me.andreasfreund.schlechtegameengine.Generator;
+import me.andreasfreund.schlechtegameengine.SchlechteGameEngine;
+import me.andreasfreund.schlechtegameengine.world.World;
+
+public class SchlechtesGame implements Generator{
+	
+	private SchlechteGameEngine engine;
+	
+	public SchlechtesGame(){
+		engine = new SchlechteGameEngine(this);
+	}
+	
+	public void generateWorld(World w) {
+		
+	}
+
+}

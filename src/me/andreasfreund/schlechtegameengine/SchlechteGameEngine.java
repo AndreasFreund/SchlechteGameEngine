@@ -1,10 +1,9 @@
 package me.andreasfreund.schlechtegameengine;
 
 public class SchlechteGameEngine {
-	private int test, test2, test3;
-	private boolean test5;
+	private Generator generator;
 
-	public SchlechteGameEngine() {
-		this.test = 3;
+	public SchlechteGameEngine(Generator g) {
+		this.generator = g;
 	}
 }
