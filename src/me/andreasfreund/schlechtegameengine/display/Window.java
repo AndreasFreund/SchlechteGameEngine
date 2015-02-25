@@ -73,10 +73,12 @@ public class Window {
 	public static void setUpLWJGL()
 	{
 		String os = System.getProperty("os.name");
-		String osarch = System.getProperty("os.arch");
-		if(os.contains("Windows"))
-		{
+		if(os.contains("Windows")){
 			os = "windows";
+		}
+		String osarch = System.getProperty("os.arch");
+		if(osarch.equals("amd64")){
+			osarch = "x64";
 		}
 		System.setProperty("org.lwjgl.util.Debug", "true");
 		System.setProperty("org.lwjgl.librarypath", Window.class.getClassLoader().getResource("libraries/lwjgl/native/" + os + "/" + osarch).getPath());
