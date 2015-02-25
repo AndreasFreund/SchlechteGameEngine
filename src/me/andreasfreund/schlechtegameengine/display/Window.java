@@ -52,6 +52,6 @@ public class Window {
 	
 	public static void setUpLWJGL()
 	{
-		System.setProperty("org.lwjgl.librarypath", Window.class.getClassLoader().getResource("natives").getPath());
+		System.setProperty("org.lwjgl.librarypath", Window.class.getClassLoader().getResource("libraries/natives").getPath());
 	}
 }
