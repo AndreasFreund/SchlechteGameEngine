@@ -1,31 +1,11 @@
-<<<<<<< Upstream, based on origin/master
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-<<<<<<< Upstream, based on origin/master
-	<classpathentry kind="lib" path="E:/Java/libraries/lwjgl/jar/lwjgl.jar">
+	<classpathentry kind="lib" path="src/libraries/lwjgl/jar/lwjgl.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="file:/E:/Java/libraries/lwjgl/doc/"/>
-=======
-	<classpathentry kind="lib" path="C:/Users/Ariane/git/SchlechteGameEngine/src/libraries/jar/lwjgl.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="file:/E:/lwjgl/doc/"/>
->>>>>>> 1e56df9 .classpath
+			<attribute name="javadoc_location" value="jar:platform:/resource/SchlechteGameEngine/src/libraries/lwjgl/doc/javadoc.zip!/"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
-=======
-<?xml version="1.0" encoding="UTF-8"?>
-<classpath>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="E:/Projekte/Java/libraries/lwjgl/jar/lwjgl.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="file:/E:/Projekte/Java/libraries/lwjgl/doc/"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="output" path="bin"/>
-</classpath>
->>>>>>> b04eba5 Updated .classpath
