@@ -2,9 +2,15 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+<<<<<<< Upstream, based on origin/master
 	<classpathentry kind="lib" path="E:/Java/libraries/lwjgl/jar/lwjgl.jar">
 		<attributes>
 			<attribute name="javadoc_location" value="file:/E:/Java/libraries/lwjgl/doc/"/>
+=======
+	<classpathentry kind="lib" path="C:/Users/Ariane/git/SchlechteGameEngine/src/libraries/jar/lwjgl.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/E:/lwjgl/doc/"/>
+>>>>>>> 1e56df9 .classpath
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
