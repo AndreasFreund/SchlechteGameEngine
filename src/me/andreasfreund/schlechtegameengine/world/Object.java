@@ -11,10 +11,22 @@ public abstract class Object {
 	private Sprite[] sprites;
 
 	public Object(Sprite[] sprites) {
+		this.setSprites(sprites);
+	}
+	
+	public void tick(){
+		
+	}
+
+	protected void setSprites(Sprite[] sprites){
 		if (sprites.length != 4) {
 			throw new IllegalStateException("No Valid Sprites Supplied");
 		}
 		this.sprites = sprites;
+	}
+	
+	public void draw(Graphics g) {
+		BufferedImage texture = this.sprites[rotation].getFrame(0);
 	}
 
 	public int getRotation() {
@@ -22,14 +34,22 @@ public abstract class Object {
 	}
 
 	public void setRotation(int rotation) {
-		if (rotation >= 0 && rotation < 4) {
-			this.rotation = rotation;
-		} else {
-			throw new IllegalStateException("A");
-		}
+		this.rotation = (rotation % 4) + 4;
 	}
 
-	public void draw(Graphics g) {
-		BufferedImage texture = this.sprites[rotation].getFrame(0);
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
 	}
 }
