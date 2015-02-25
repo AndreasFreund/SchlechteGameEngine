@@ -13,9 +13,22 @@ import org.lwjgl.opengl.GLContext;
 public class Window {
 	private long window;
 	
-	public Window()
+	public Window(String windowTitle)
 	{
 		long monitor = GLFW.glfwGetPrimaryMonitor();
+		glfwDefaultWindowHints();
+		/*glfwWindowHint(GLFW_RED_BITS, GLFWvidmode.REDBITS);
+		glfwWindowHint(GLFW_GREEN_BITS, GLFWvidmode.GREENBITS);
+		glfwWindowHint(GLFW_BLUE_BITS,GLFWvidmode.BLUEBITS);
+		glfwWindowHint(GLFW_REFRESH_RATE, GLFWvidmode.REFRESHRATE);*/
+        glfwWindowHint(GLFW_VISIBLE, GL11.GL_FALSE);
+        glfwWindowHint(GLFW_RESIZABLE, GL11.GL_TRUE);
+        ByteBuffer vidMode = GLFW.glfwGetVideoMode(monitor);
+		window = glfwCreateWindow(GLFWvidmode.width(vidMode), GLFWvidmode.height(vidMode), windowTitle, 0, 0);
+	}
+	
+	public Window(String windowTitle, int windowWidth, int windowHeight)
+	{
 		glfwDefaultWindowHints();
 		glfwWindowHint(GLFW_RED_BITS, GLFWvidmode.REDBITS);
 		glfwWindowHint(GLFW_GREEN_BITS, GLFWvidmode.GREENBITS);
@@ -23,17 +36,20 @@ public class Window {
 		glfwWindowHint(GLFW_REFRESH_RATE, GLFWvidmode.REFRESHRATE);
         glfwWindowHint(GLFW_VISIBLE, GL11.GL_FALSE);
         glfwWindowHint(GLFW_RESIZABLE, GL11.GL_TRUE);
-        ByteBuffer vidMode = GLFW.glfwGetVideoMode(monitor);
-		window = glfwCreateWindow(GLFWvidmode.width(vidMode), GLFWvidmode.height(vidMode), "WindowTitle", 0, 0);
+		window = glfwCreateWindow(windowWidth, windowHeight, windowTitle, 0, 0);
 		
-		System.out.println(window == GL11.GL_FALSE);
-		
+		ByteBuffer vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+        glfwSetWindowPos(window, (GLFWvidmode.width(vidmode) - windowWidth) / 2, (GLFWvidmode.height(vidmode) - windowHeight) / 2);
+	}
+	
+	public void display()
+	{
         glfwMakeContextCurrent(window);
+        GLContext.createFromCurrent();
         glfwSwapInterval(1);
  
         glfwShowWindow(window);
         
-        GLContext.createFromCurrent();
 	}
 	
 	public boolean isCloseRequested()

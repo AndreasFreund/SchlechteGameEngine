@@ -9,7 +9,7 @@ public class SchlechtesGame implements Generator{
 	private SchlechteGameEngine engine;
 	
 	public SchlechtesGame(){
-		engine = new SchlechteGameEngine(this);
+		engine = new SchlechteGameEngine(this, "Schlechtes Game");
 	}
 	
 	public void generateWorld(World w) {
