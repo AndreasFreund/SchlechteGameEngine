@@ -15,5 +15,10 @@ public class SchlechtesGame implements Generator{
 	public void generateWorld(World w) {
 		
 	}
+	
+	public static void main(String[] args)
+	{
+		new SchlechtesGame();
+	}
 
 }
