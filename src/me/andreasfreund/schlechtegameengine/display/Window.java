@@ -56,6 +56,7 @@ public class Window {
 	
 	public static void setUpLWJGL()
 	{
+		System.setProperty("org.lwjgl.util.Debug", "true");
 		System.setProperty("org.lwjgl.librarypath", Window.class.getClassLoader().getResource("libraries/lwjgl/native").getPath());
 		if(glfwInit() != GL11.GL_TRUE)
 		{
