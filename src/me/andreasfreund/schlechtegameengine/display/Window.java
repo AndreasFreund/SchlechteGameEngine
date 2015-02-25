@@ -17,10 +17,10 @@ public class Window {
 	{
 		long monitor = GLFW.glfwGetPrimaryMonitor();
 		glfwDefaultWindowHints();
-		/*glfwWindowHint(GLFW_RED_BITS, GLFWvidmode.REDBITS);
+		glfwWindowHint(GLFW_RED_BITS, GLFWvidmode.REDBITS);
 		glfwWindowHint(GLFW_GREEN_BITS, GLFWvidmode.GREENBITS);
 		glfwWindowHint(GLFW_BLUE_BITS,GLFWvidmode.BLUEBITS);
-		glfwWindowHint(GLFW_REFRESH_RATE, GLFWvidmode.REFRESHRATE);*/
+		glfwWindowHint(GLFW_REFRESH_RATE, GLFWvidmode.REFRESHRATE);
         glfwWindowHint(GLFW_VISIBLE, GL11.GL_FALSE);
         glfwWindowHint(GLFW_RESIZABLE, GL11.GL_TRUE);
         ByteBuffer vidMode = GLFW.glfwGetVideoMode(monitor);
@@ -72,8 +72,14 @@ public class Window {
 	
 	public static void setUpLWJGL()
 	{
+		String os = System.getProperty("os.name");
+		String osarch = System.getProperty("os.arch");
+		if(os.contains("Windows"))
+		{
+			os = "windows";
+		}
 		System.setProperty("org.lwjgl.util.Debug", "true");
-		System.setProperty("org.lwjgl.librarypath", Window.class.getClassLoader().getResource("libraries/lwjgl/native").getPath());
+		System.setProperty("org.lwjgl.librarypath", Window.class.getClassLoader().getResource("libraries/lwjgl/native/" + os + "/" + osarch).getPath());
 		if(glfwInit() != GL11.GL_TRUE)
 		{
 			System.err.println("Unable to initalize LWJGL");
