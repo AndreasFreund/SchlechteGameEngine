@@ -8,7 +8,8 @@ public class SchlechtesGame implements Generator{
 	
 	private SchlechteGameEngine engine;
 	
-	public SchlechtesGame(){
+	public SchlechtesGame()
+	{
 		engine = new SchlechteGameEngine(this, "Schlechtes Game");
 	}
 	

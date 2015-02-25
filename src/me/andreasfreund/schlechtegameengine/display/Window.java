@@ -24,7 +24,7 @@ public class Window {
         glfwWindowHint(GLFW_VISIBLE, GL11.GL_FALSE);
         glfwWindowHint(GLFW_RESIZABLE, GL11.GL_TRUE);
         ByteBuffer vidMode = GLFW.glfwGetVideoMode(monitor);
-		window = glfwCreateWindow(GLFWvidmode.width(vidMode), GLFWvidmode.height(vidMode), windowTitle, 0, 0);
+		window = glfwCreateWindow(GLFWvidmode.width(vidMode), GLFWvidmode.height(vidMode), windowTitle, monitor, 0);
 	}
 	
 	public Window(String windowTitle, int windowWidth, int windowHeight)
