@@ -9,81 +9,81 @@ import org.lwjgl.glfw.GLFWvidmode;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GLContext;
 
-
 public class Window {
 	private long window;
-	
-	public Window(String windowTitle)
-	{
+
+	public Window(String windowTitle) {
 		long monitor = GLFW.glfwGetPrimaryMonitor();
 		glfwDefaultWindowHints();
 		glfwWindowHint(GLFW_RED_BITS, GLFWvidmode.REDBITS);
 		glfwWindowHint(GLFW_GREEN_BITS, GLFWvidmode.GREENBITS);
-		glfwWindowHint(GLFW_BLUE_BITS,GLFWvidmode.BLUEBITS);
+		glfwWindowHint(GLFW_BLUE_BITS, GLFWvidmode.BLUEBITS);
 		glfwWindowHint(GLFW_REFRESH_RATE, GLFWvidmode.REFRESHRATE);
-        glfwWindowHint(GLFW_VISIBLE, GL11.GL_FALSE);
-        glfwWindowHint(GLFW_RESIZABLE, GL11.GL_TRUE);
-        ByteBuffer vidMode = GLFW.glfwGetVideoMode(monitor);
-		window = glfwCreateWindow(GLFWvidmode.width(vidMode), GLFWvidmode.height(vidMode), windowTitle, monitor, 0);
+		glfwWindowHint(GLFW_VISIBLE, GL11.GL_FALSE);
+		glfwWindowHint(GLFW_RESIZABLE, GL11.GL_TRUE);
+		ByteBuffer vidMode = GLFW.glfwGetVideoMode(monitor);
+		window = glfwCreateWindow(GLFWvidmode.width(vidMode),
+				GLFWvidmode.height(vidMode), windowTitle, monitor, 0);
 	}
-	
-	public Window(String windowTitle, int windowWidth, int windowHeight)
-	{
+
+	public Window(String windowTitle, int windowWidth, int windowHeight) {
 		glfwDefaultWindowHints();
 		glfwWindowHint(GLFW_RED_BITS, GLFWvidmode.REDBITS);
 		glfwWindowHint(GLFW_GREEN_BITS, GLFWvidmode.GREENBITS);
-		glfwWindowHint(GLFW_BLUE_BITS,GLFWvidmode.BLUEBITS);
+		glfwWindowHint(GLFW_BLUE_BITS, GLFWvidmode.BLUEBITS);
 		glfwWindowHint(GLFW_REFRESH_RATE, GLFWvidmode.REFRESHRATE);
-        glfwWindowHint(GLFW_VISIBLE, GL11.GL_FALSE);
-        glfwWindowHint(GLFW_RESIZABLE, GL11.GL_TRUE);
+		glfwWindowHint(GLFW_VISIBLE, GL11.GL_FALSE);
+		glfwWindowHint(GLFW_RESIZABLE, GL11.GL_TRUE);
 		window = glfwCreateWindow(windowWidth, windowHeight, windowTitle, 0, 0);
-		
+
 		ByteBuffer vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
-        glfwSetWindowPos(window, (GLFWvidmode.width(vidmode) - windowWidth) / 2, (GLFWvidmode.height(vidmode) - windowHeight) / 2);
+		glfwSetWindowPos(window,
+				(GLFWvidmode.width(vidmode) - windowWidth) / 2,
+				(GLFWvidmode.height(vidmode) - windowHeight) / 2);
 	}
-	
-	public void display()
-	{
-        glfwMakeContextCurrent(window);
-        GLContext.createFromCurrent();
-        glfwSwapInterval(1);
- 
-        glfwShowWindow(window);
-        
+
+	public void display() {
+		glfwMakeContextCurrent(window);
+		GLContext.createFromCurrent();
+		glfwSwapInterval(1);
+
+		glfwShowWindow(window);
+
 	}
-	
-	public boolean isCloseRequested()
-	{
+
+	public boolean isCloseRequested() {
 		return glfwWindowShouldClose(window) == GL11.GL_TRUE;
 	}
-	
-	public void update()
-	{
+
+	public void update() {
 		glfwSwapBuffers(window);
-		
-        glfwPollEvents();
+
+		glfwPollEvents();
 	}
-	
-	public void close()
-	{
+
+	public void close() {
 		glfwDestroyWindow(window);
-        glfwTerminate();
+		glfwTerminate();
 	}
-	
-	public static void setUpLWJGL()
-	{
+
+	public static void setUpLWJGL() {
 		String os = System.getProperty("os.name");
-		if(os.contains("Windows")){
+		if (os.contains("Windows")) {
 			os = "windows";
 		}
 		String osarch = System.getProperty("os.arch");
-		if(osarch.equals("amd64")){
+		if (osarch.equals("amd64")) {
 			osarch = "x64";
 		}
 		System.setProperty("org.lwjgl.util.Debug", "true");
-		System.setProperty("org.lwjgl.librarypath", Window.class.getClassLoader().getResource("libraries/lwjgl/native/" + os + "/" + osarch).getPath());
-		if(glfwInit() != GL11.GL_TRUE)
-		{
+		System.setProperty(
+				"org.lwjgl.librarypath",
+				Window.class
+						.getClassLoader()
+						.getResource(
+								"libraries/lwjgl/native/" + os + "/" + osarch)
+						.getPath());
+		if (glfwInit() != GL11.GL_TRUE) {
 			System.err.println("Unable to initalize LWJGL");
 			System.exit(-1);
 		}

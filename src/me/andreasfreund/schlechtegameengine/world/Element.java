@@ -5,12 +5,12 @@ import java.awt.image.BufferedImage;
 
 import me.andreasfreund.schlechtegameengine.display.Sprite;
 
-public abstract class Object {
+public abstract class Element {
 	private int x = 0, y = 0, rotation = 0;
 
 	private Sprite[] sprites;
 
-	protected Object(Sprite[] sprites) {
+	protected Element(Sprite[] sprites) {
 		this.setSprites(sprites);
 	}
 
@@ -56,5 +56,9 @@ public abstract class Object {
 
 	public void setX(int x) {
 		this.x = x;
+	}
+	
+	public String toString(){
+		return this.getClass().getName();
 	}
 }

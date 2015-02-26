@@ -4,24 +4,24 @@ import java.util.ArrayList;
 
 
 public class World {
-	private ArrayList<Object> objects;
+	private ArrayList<Element> elements;
 
 	public World() {
-
+		this.elements = new ArrayList<Element>();
 	}
 
-	public void addObject(Object obj) {
-		this.objects.add(obj);
+	public void addElement(Element obj) {
+		this.elements.add(obj);
 	}
 
 	
-	public Object[] getByType(Class<Object> type) {
-		ArrayList<Object> objects = new ArrayList<Object>();
-		for (Object o : this.objects) {
+	public Element[] getByType(Class<?> type) {
+		ArrayList<Element> elements = new ArrayList<Element>();
+		for (Element o : this.elements) {
 			if(type.isInstance(o)){
-				objects.add(o);				
+				elements.add(o);				
 			}
 		}
-		return objects.toArray(new Object[objects.size()]);
+		return elements.toArray(new Element[elements.size()]);
 	}
 }

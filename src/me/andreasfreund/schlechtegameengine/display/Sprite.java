@@ -11,6 +11,7 @@ public class Sprite {
 	}
 
 	public Sprite(BufferedImage image, int frames) {
+		this.frames = new ArrayList<BufferedImage>();
 		int frameheight = image.getHeight() / frames;
 		int framewidth = image.getWidth();
 		for (int i = 0; i < frames; i++) {
