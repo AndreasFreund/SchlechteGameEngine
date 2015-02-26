@@ -133,7 +133,7 @@ public class Sprite {
 
 	private int get2Fold(int fold) {
 		int ret = 2;
-		while (ret <= fold) {
+		while (ret < fold) {
 			ret *= 2;
 		}
 		return ret;
