@@ -1,6 +1,5 @@
 package me.andreasfreund.schlechtegameengine.test;
 
-import me.andreasfreund.schlechtegameengine.display.TextureLoader;
 import me.andreasfreund.schlechtegameengine.world.*;
 import me.andreasfreund.schlechtesgame.*;
 
