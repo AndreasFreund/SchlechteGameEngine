@@ -10,21 +10,26 @@ public abstract class Object {
 
 	private Sprite[] sprites;
 
-	public Object(Sprite[] sprites) {
+	protected Object(Sprite[] sprites) {
 		this.setSprites(sprites);
 	}
-	
-	public void tick(){
-		
+
+	public void tick() {
+
 	}
 
-	protected void setSprites(Sprite[] sprites){
+	protected void setSprites(Sprite[] sprites) {
 		if (sprites.length != 4) {
-			throw new IllegalStateException("No Valid Sprites Supplied");
+			throw new IllegalArgumentException("No Valid Sprites Supplied");
+		}
+		for (Sprite sprite : sprites) {
+			if (sprite == null) {
+				throw new IllegalArgumentException("No Valid Sprite Supplied");
+			}
 		}
 		this.sprites = sprites;
 	}
-	
+
 	public void draw(Graphics g) {
 		BufferedImage texture = this.sprites[rotation].getFrame(0);
 	}
