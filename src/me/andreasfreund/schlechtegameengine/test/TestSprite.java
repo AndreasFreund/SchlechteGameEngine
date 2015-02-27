@@ -28,12 +28,17 @@ public class TestSprite{
 		Window.setUpLWJGL();
 		Window window = new Window("A");
 		window.getContext();
-		window.setScale(20);
+		window.setScale(2);
 		TestSprite test = new TestSprite();
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		while (!window.isCloseRequested()) {
 			GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
-			test.sprites[0].bindFrame(0);
+			GL11.glLoadIdentity();
+			if (test.last + 1000 < System.currentTimeMillis()) {
+				test.last = System.currentTimeMillis();
+				test.i = (test.i + 1) % test.sprites[0].getFrameCount();
+			}
+			test.sprites[0].bindFrame(test.i);
 			GL11.glBegin(GL11.GL_QUADS);
 			GL11.glTexCoord2f(0, 1);
 			GL11.glVertex2f(-0.5f, -0.5f);

@@ -79,7 +79,7 @@ public class Window {
 		int w = width.get(), h = height.get();
 		GL11.glMatrixMode(GL11.GL_PROJECTION);
 		GL11.glLoadIdentity();
-		GL11.glOrtho((int)((w / (float)h) * -scale), (int)((w / (float)h) * scale), scale, -scale, 1, -1);
+		GL11.glOrtho((int)((w / (float)h) * -scale), (int)((w / (float)h) * scale), -scale, scale, 1, -1);
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 		GL11.glLoadIdentity();
 	}
