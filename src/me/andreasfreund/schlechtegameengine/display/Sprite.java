@@ -94,15 +94,8 @@ public class Sprite {
 		WritableRaster raster;
 		BufferedImage texImage;
 
-		int texWidth = 2;
-		int texHeight = 2;
-
-		while (texWidth < bufferedImage.getWidth()) {
-			texWidth *= 2;
-		}
-		while (texHeight < bufferedImage.getHeight()) {
-			texHeight *= 2;
-		}
+		int texWidth = this.get2Fold(bufferedImage.getWidth());
+		int texHeight = this.get2Fold(bufferedImage.getHeight());
 
 		if (bufferedImage.getColorModel().hasAlpha()) {
 			raster = Raster.createInterleavedRaster(DataBuffer.TYPE_BYTE,
@@ -119,8 +112,7 @@ public class Sprite {
 		Graphics g = texImage.getGraphics();
 		g.setColor(new Color(0f, 0f, 0f, 0f));
 		g.fillRect(0, 0, texWidth, texHeight);
-		g.drawImage(bufferedImage, 0, 0, null);
-		//TODO Texture scaling
+		g.drawImage(bufferedImage, 0, 0, texWidth, texHeight, null);
 		byte[] data = ((DataBufferByte) texImage.getRaster().getDataBuffer())
 				.getData();
 

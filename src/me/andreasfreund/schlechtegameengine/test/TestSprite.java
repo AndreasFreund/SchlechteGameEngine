@@ -28,6 +28,7 @@ public class TestSprite{
 		Window.setUpLWJGL();
 		Window window = new Window("A");
 		window.getContext();
+		window.setScale(20);
 		TestSprite test = new TestSprite();
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		while (!window.isCloseRequested()) {
