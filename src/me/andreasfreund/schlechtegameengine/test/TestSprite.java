@@ -2,48 +2,48 @@ package me.andreasfreund.schlechtegameengine.test;
 
 import java.awt.Graphics;
 
-import javax.swing.JFrame;
+import org.lwjgl.opengl.GL11;
 
-import me.andreasfreund.schlechtegameengine.display.Sprite;
-import me.andreasfreund.schlechtegameengine.display.TextureLoader;
+import me.andreasfreund.schlechtegameengine.display.*;
 
-public class TestSprite extends JFrame {
+public class TestSprite{
 	private Sprite[] sprites;
 	private long last;
 	private int i;
 
 	public TestSprite() {
-		super("Test");
 		this.i = 0;
 		this.last = System.currentTimeMillis();
 		this.sprites = TextureLoader.getTextureLoader().fetchSprites("wall");
-		this.setUndecorated(true);
-		this.setSize(sprites[0].getFrame(0).getWidth(), sprites[0].getFrame(0)
-				.getHeight());
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setVisible(true);
-		this.getGraphics().drawImage(sprites[0].getFrame(this.i), 0, 0, null);
 	}
 
 	public void paint(Graphics g) {
 		if (this.last + 1000 < System.currentTimeMillis()) {
 			this.last = System.currentTimeMillis();
-			this.i = (this.i + 1) % 6;
-			System.out.println(i);
-			this.getGraphics().drawImage(sprites[0].getFrame(this.i), 0, 0,
-					null);
+			this.i = (this.i + 1) % sprites[0].getFrameCount();
 		}
 	}
 
 	public static void main(String[] args) {
+		Window.setUpLWJGL();
+		Window window = new Window("A");
+		window.getContext();
 		TestSprite test = new TestSprite();
-		while (true) {
-			test.paint(test.getGraphics());
-			try {
-				Thread.sleep(1);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		while (!window.isCloseRequested()) {
+			GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
+			test.sprites[0].bindFrame(0);
+			GL11.glBegin(GL11.GL_QUADS);
+			GL11.glTexCoord2f(0, 1);
+			GL11.glVertex2f(-0.5f, -0.5f);
+			GL11.glTexCoord2f(0, 0);
+			GL11.glVertex2f(-0.5f, 0.5f);
+			GL11.glTexCoord2f(1, 0);
+			GL11.glVertex2f(0.5f, 0.5f);
+			GL11.glTexCoord2f(1, 1);
+			GL11.glVertex2f(0.5f, -0.5f);
+			GL11.glEnd();
+			window.update();
 		}
 		/*
 		 * Sprite[] sprites = TextureLoader.getTextureLoader()

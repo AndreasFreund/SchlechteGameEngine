@@ -25,9 +25,22 @@ public class TextureLoader {
 		Sprite[] sprites = new Sprite[4];
 		for (File file : files) {
 			String[] filename = file.getName().split("\\.");
-			if (filename.length >= 4 && filename[0].equals(object)) {
+			if (filename[0].equals(object)) {
 				try {
-					sprites[Integer.parseInt(filename[1])] = new Sprite(ImageIO.read(file),Integer.parseInt(filename[2]));
+					if (filename.length == 4) {
+						sprites[Integer.parseInt(filename[1])] = new Sprite(
+								ImageIO.read(file),
+								Integer.parseInt(filename[2]));
+					} else if (filename.length == 3) {
+						Sprite sprite = new Sprite(
+								ImageIO.read(file),
+								Integer.parseInt(filename[1]));
+						sprites[0] = sprite;
+						sprites[1] = sprite;
+						sprites[2] = sprite;
+						sprites[3] = sprite;
+					}
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

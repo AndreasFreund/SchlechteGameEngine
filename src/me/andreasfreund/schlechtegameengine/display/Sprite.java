@@ -120,7 +120,7 @@ public class Sprite {
 		g.setColor(new Color(0f, 0f, 0f, 0f));
 		g.fillRect(0, 0, texWidth, texHeight);
 		g.drawImage(bufferedImage, 0, 0, null);
-
+		//TODO Texture scaling
 		byte[] data = ((DataBufferByte) texImage.getRaster().getDataBuffer())
 				.getData();
 

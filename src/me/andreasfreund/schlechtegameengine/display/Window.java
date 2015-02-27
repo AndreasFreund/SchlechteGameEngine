@@ -51,6 +51,11 @@ public class Window {
 
 	}
 
+	public void getContext() {
+		glfwMakeContextCurrent(window);
+		GLContext.createFromCurrent();
+	}
+
 	public boolean isCloseRequested() {
 		return glfwWindowShouldClose(window) == GL11.GL_TRUE;
 	}
