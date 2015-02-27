@@ -5,6 +5,7 @@ import static org.lwjgl.glfw.GLFW.*;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 
+import org.lwjgl.BufferUtils;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWvidmode;
 import org.lwjgl.opengl.GL11;
@@ -73,13 +74,14 @@ public class Window {
 	}
 
 	public void setScale(int scale) {
-		IntBuffer width = IntBuffer.allocate(1), height = IntBuffer.allocate(1);
+		IntBuffer width = BufferUtils.createIntBuffer(1), height = BufferUtils.createIntBuffer(1);
 		GLFW.glfwGetWindowSize(window, width, height);
 		int w = width.get(), h = height.get();
 		GL11.glMatrixMode(GL11.GL_PROJECTION);
 		GL11.glLoadIdentity();
-		GL11.glOrtho((int)((w / (float)h) * -10), (int)((w / (float)h) * 10), 10, -10, 1, -1);
+		GL11.glOrtho((int)((w / (float)h) * -scale), (int)((w / (float)h) * scale), scale, -scale, 1, -1);
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
+		GL11.glLoadIdentity();
 	}
 
 	public static void setUpLWJGL() {
