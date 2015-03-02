@@ -14,7 +14,7 @@ public class TestSprite{
 	public TestSprite() {
 		this.i = 0;
 		this.last = System.currentTimeMillis();
-		this.sprites = TextureLoader.getTextureLoader().fetchSprites("wall");
+		this.sprites = TextureLoader.getTextureLoader().fetchSprites("grass");
 	}
 
 	public void paint(Graphics g) {
@@ -26,9 +26,9 @@ public class TestSprite{
 
 	public static void main(String[] args) {
 		Window.setUpLWJGL();
-		Window window = new Window("A");
+		Window window = new Window("Schlechter Fenstertitel den man nicht sehen kann");
 		window.getContext();
-		window.setScale(2);
+		window.setScale(10);
 		TestSprite test = new TestSprite();
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		while (!window.isCloseRequested()) {

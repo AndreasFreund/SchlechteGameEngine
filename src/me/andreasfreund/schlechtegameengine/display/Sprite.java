@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 
 import org.lwjgl.BufferUtils;
+import org.lwjgl.opengl.GL11;
 
 public class Sprite {
 	private ArrayList<BufferedImage> frames;
@@ -80,7 +81,7 @@ public class Sprite {
 
 		if (target == GL_TEXTURE_2D) {
 			glTexParameteri(target, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-			glTexParameteri(target, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+			glTexParameteri(target, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 		}
 		glTexImage2D(target, 0, GL_RGBA, get2Fold(bufferedImage.getWidth()),
 				get2Fold(bufferedImage.getHeight()), 0, srcPixelFormat,

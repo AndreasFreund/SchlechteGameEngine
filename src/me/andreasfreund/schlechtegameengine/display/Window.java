@@ -74,12 +74,13 @@ public class Window {
 	}
 
 	public void setScale(int scale) {
+		//20 HE -> min 16px then 32x...-> 320px OK -> 640px OK -> 1280px NOT OK => 640px = 20HE => 1080px = ...
 		IntBuffer width = BufferUtils.createIntBuffer(1), height = BufferUtils.createIntBuffer(1);
 		GLFW.glfwGetWindowSize(window, width, height);
 		int w = width.get(), h = height.get();
 		GL11.glMatrixMode(GL11.GL_PROJECTION);
 		GL11.glLoadIdentity();
-		GL11.glOrtho((int)((w / (float)h) * -scale), (int)((w / (float)h) * scale), -scale, scale, 1, -1);
+		GL11.glOrtho(((w / (float)h) * -scale), ((w / (float)h) * scale), -scale, scale, 1, -1);
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 		GL11.glLoadIdentity();
 	}
