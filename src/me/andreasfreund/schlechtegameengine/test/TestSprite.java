@@ -28,7 +28,7 @@ public class TestSprite{
 		Window.setUpLWJGL();
 		Window window = new Window("Schlechter Fenstertitel den man nicht sehen kann");
 		window.getContext();
-		window.setScale(10);
+		window.setScale(16);
 		TestSprite test = new TestSprite();
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		while (!window.isCloseRequested()) {

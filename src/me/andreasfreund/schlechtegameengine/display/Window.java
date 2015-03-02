@@ -24,7 +24,7 @@ public class Window {
 		glfwWindowHint(GLFW_VISIBLE, GL11.GL_FALSE);
 		glfwWindowHint(GLFW_RESIZABLE, GL11.GL_TRUE);
 		ByteBuffer vidMode = GLFW.glfwGetVideoMode(monitor);
-		window = glfwCreateWindow(GLFWvidmode.width(vidMode),
+		this.window = glfwCreateWindow(GLFWvidmode.width(vidMode),
 				GLFWvidmode.height(vidMode), windowTitle, monitor, 0);
 	}
 
@@ -36,51 +36,62 @@ public class Window {
 		glfwWindowHint(GLFW_REFRESH_RATE, GLFWvidmode.REFRESHRATE);
 		glfwWindowHint(GLFW_VISIBLE, GL11.GL_FALSE);
 		glfwWindowHint(GLFW_RESIZABLE, GL11.GL_TRUE);
-		window = glfwCreateWindow(windowWidth, windowHeight, windowTitle, 0, 0);
+		this.window = glfwCreateWindow(windowWidth, windowHeight, windowTitle,
+				0, 0);
 
 		ByteBuffer vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
-		glfwSetWindowPos(window,
+		glfwSetWindowPos(this.window,
 				(GLFWvidmode.width(vidmode) - windowWidth) / 2,
 				(GLFWvidmode.height(vidmode) - windowHeight) / 2);
 	}
 
 	public void display() {
-		glfwMakeContextCurrent(window);
+		glfwMakeContextCurrent(this.window);
 		GLContext.createFromCurrent();
 		glfwSwapInterval(1);
 
-		glfwShowWindow(window);
+		glfwShowWindow(this.window);
 
 	}
 
 	public void getContext() {
-		glfwMakeContextCurrent(window);
+		glfwMakeContextCurrent(this.window);
 		GLContext.createFromCurrent();
 	}
 
 	public boolean isCloseRequested() {
-		return glfwWindowShouldClose(window) == GL11.GL_TRUE;
+		return glfwWindowShouldClose(this.window) == GL11.GL_TRUE;
 	}
 
 	public void update() {
-		glfwSwapBuffers(window);
+		glfwSwapBuffers(this.window);
 
 		glfwPollEvents();
 	}
 
 	public void close() {
-		glfwDestroyWindow(window);
+		glfwDestroyWindow(this.window);
 		glfwTerminate();
 	}
 
-	public void setScale(int scale) {
-		//20 HE -> min 16px then 32x...-> 320px OK -> 640px OK -> 1280px NOT OK => 640px = 20HE => 1080px = ...
-		IntBuffer width = BufferUtils.createIntBuffer(1), height = BufferUtils.createIntBuffer(1);
-		GLFW.glfwGetWindowSize(window, width, height);
+	public void setScale(int minHeightUnits) {
+		IntBuffer width = BufferUtils.createIntBuffer(1), height = BufferUtils
+				.createIntBuffer(1);
+		GLFW.glfwGetWindowSize(this.window, width, height);
 		int w = width.get(), h = height.get();
+
+		int texRes = 2;
+		while (texRes * minHeightUnits < h) {
+			texRes *= 2;
+		}
+
+		float heightUnits = h / (float) texRes / 2;
+
 		GL11.glMatrixMode(GL11.GL_PROJECTION);
 		GL11.glLoadIdentity();
-		GL11.glOrtho(((w / (float)h) * -scale), ((w / (float)h) * scale), -scale, scale, 1, -1);
+		GL11.glOrtho(((w / (float) h) * -heightUnits),
+				((w / (float) h) * heightUnits), -heightUnits, heightUnits, 1,
+				-1);
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 		GL11.glLoadIdentity();
 	}
