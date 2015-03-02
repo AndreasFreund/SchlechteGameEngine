@@ -24,4 +24,11 @@ public class World {
 		}
 		return elements.toArray(new Element[elements.size()]);
 	}
+
+	public void draw() {
+		for(Element e:elements)
+		{
+			e.draw();
+		}
+	}
 }

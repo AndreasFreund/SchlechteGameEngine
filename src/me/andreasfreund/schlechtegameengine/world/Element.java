@@ -1,7 +1,6 @@
 package me.andreasfreund.schlechtegameengine.world;
 
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
+import org.lwjgl.opengl.GL11;
 
 import me.andreasfreund.schlechtegameengine.display.Sprite;
 
@@ -30,8 +29,21 @@ public abstract class Element {
 		this.sprites = sprites;
 	}
 
-	public void draw(Graphics g) {
-		BufferedImage texture = this.sprites[rotation].getFrame(0);
+	public void draw() {
+		this.sprites[rotation].bindFrame(0);
+		GL11.glPushMatrix();
+		GL11.glTranslatef(x, y, 0);
+		GL11.glBegin(GL11.GL_QUADS);
+		GL11.glTexCoord2f(0, 1);
+		GL11.glVertex2f(0, 0);
+		GL11.glTexCoord2f(0, 0);
+		GL11.glVertex2f(0, 1);
+		GL11.glTexCoord2f(1, 0);
+		GL11.glVertex2f(1, 1);
+		GL11.glTexCoord2f(1, 1);
+		GL11.glVertex2f(1, 0);
+		GL11.glEnd();
+		GL11.glPopMatrix();
 	}
 
 	public int getRotation() {
