@@ -26,7 +26,7 @@ public class TestSprite{
 
 	public static void main(String[] args) {
 		Window.setUpLWJGL();
-		Window window = new Window("Schlechter Fenstertitel den man nicht sehen kann");
+		Window window = new Window("TestSprite");
 		window.getContext();
 		window.setScale(16);
 		TestSprite test = new TestSprite();
