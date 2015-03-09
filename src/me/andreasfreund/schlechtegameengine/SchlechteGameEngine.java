@@ -27,8 +27,8 @@ public class SchlechteGameEngine {
 		this.window.display();
 		g.generateWorld(this.world);
 	}
-	
-	private SchlechteGameEngine(Generator g){
+
+	private SchlechteGameEngine(Generator g) {
 		Window.setUpLWJGL();
 		this.generator = g;
 		this.world = new World();
@@ -46,9 +46,8 @@ public class SchlechteGameEngine {
 	public Window getWindow() {
 		return this.window;
 	}
-	
-	public void start()
-	{
+
+	public void start() {
 		mainloop();
 	}
 
@@ -57,11 +56,16 @@ public class SchlechteGameEngine {
 		while (!this.window.isCloseRequested()) {
 			GL11.glClearColor(0, 0, 0, 0);
 			GL11.glLoadIdentity();
-			GL11.glTranslatef(-this.camera.getX() - 0.5f, -this.camera.getY() - 0.5f, 0);
+			GL11.glTranslatef(-this.camera.getX() - 0.5f,
+					-this.camera.getY() - 0.5f, 0);
 			this.world.draw();
 			this.window.update();
 		}
 
 		window.close();
+	}
+
+	public World getWorld() {
+		return this.world;
 	}
 }

@@ -2,6 +2,7 @@ package me.andreasfreund.schlechtegameengine.world;
 
 import org.lwjgl.opengl.GL11;
 
+import me.andreasfreund.schlechtegameengine.SchlechteGameEngine;
 import me.andreasfreund.schlechtegameengine.display.Sprite;
 
 public abstract class Element {
@@ -11,10 +12,6 @@ public abstract class Element {
 
 	protected Element(Sprite[] sprites) {
 		this.setSprites(sprites);
-	}
-
-	public void tick() {
-
 	}
 
 	protected void setSprites(Sprite[] sprites) {
@@ -72,5 +69,9 @@ public abstract class Element {
 	
 	public String toString(){
 		return this.getClass().getName();
+	}
+	
+	public void tick(SchlechteGameEngine engine){
+		
 	}
 }

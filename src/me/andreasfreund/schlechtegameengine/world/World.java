@@ -2,6 +2,7 @@ package me.andreasfreund.schlechtegameengine.world;
 
 import java.util.ArrayList;
 
+import me.andreasfreund.schlechtegameengine.SchlechteGameEngine;
 
 public class World {
 	private ArrayList<Element> elements;
@@ -14,21 +15,25 @@ public class World {
 		this.elements.add(obj);
 	}
 
-	
 	public Element[] getByType(Class<?> type) {
 		ArrayList<Element> elements = new ArrayList<Element>();
 		for (Element o : this.elements) {
-			if(type.isInstance(o)){
-				elements.add(o);				
+			if (type.isInstance(o)) {
+				elements.add(o);
 			}
 		}
 		return elements.toArray(new Element[elements.size()]);
 	}
 
 	public void draw() {
-		for(Element e:elements)
-		{
+		for (Element e : elements) {
 			e.draw();
+		}
+	}
+
+	public void tick(SchlechteGameEngine engine) {
+		for (Element e : elements) {
+			e.tick(engine);
 		}
 	}
 }

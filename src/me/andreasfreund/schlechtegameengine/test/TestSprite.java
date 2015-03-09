@@ -6,7 +6,7 @@ import org.lwjgl.opengl.GL11;
 
 import me.andreasfreund.schlechtegameengine.display.*;
 
-public class TestSprite{
+public class TestSprite {
 	private Sprite[] sprites;
 	private long last;
 	private int i;
