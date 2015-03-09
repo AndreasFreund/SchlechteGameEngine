@@ -11,11 +11,11 @@ public class TestWorld {
 		Window.setUpLWJGL();
 		Window window = new Window("TestWorld");
 		window.getContext();
-		window.setScale(16);
+		window.setScale(32);
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		World world = new World();
 		//Grass grass = new Grass();
-		for(int x = -4;x<4;x++) {
+		for(int x = -3;x<4;x++) {
 			for(int y = -4;y<4;y++){
 				Wall wall = new Wall();
 				wall.setX(x);
@@ -23,12 +23,14 @@ public class TestWorld {
 				world.addElement(wall);
 			}
 		}
-		for(int x = -10;x<10;x++){
+		for(int x = -9;x<10;x++){
 			Grass wall = new Grass();
 			wall.setX(x);
 			wall.setY(-5);
 			world.addElement(wall);
 		}
+		world.addElement(new Ghost());
+		System.out.println(world.getByType(Collidable.class).length);
 		
 		
 		//world.addElement(grass);

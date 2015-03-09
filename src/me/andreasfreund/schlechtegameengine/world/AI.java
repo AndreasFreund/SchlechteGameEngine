@@ -9,10 +9,6 @@ public class AI extends Element {
 		super(sprites);
 	}
 
-	private void move() {
-
-	}
-
 	public void tick(SchlechteGameEngine engine) {
 
 	}
