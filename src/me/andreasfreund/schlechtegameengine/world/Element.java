@@ -6,8 +6,13 @@ import me.andreasfreund.schlechtegameengine.SchlechteGameEngine;
 import me.andreasfreund.schlechtegameengine.display.Sprite;
 
 public abstract class Element {
-	private int x = 0, y = 0, rotation = 0;
+	private int x = 0, y = 0, layer = LAYER_DEFAULT, rotation = 0;
 
+	public static final int LAYER_BACKGROUND = 5;
+	public static final int LAYER_DEFAULT = 3;
+	public static final int LAYER_FOREGROUND = 2;
+	public static final int LAYER_OVERLAY = 0;
+	
 	private Sprite[] sprites;
 
 	protected Element(Sprite[] sprites) {
@@ -29,7 +34,7 @@ public abstract class Element {
 	public void draw() {
 		this.sprites[rotation].bindFrame(0);
 		GL11.glPushMatrix();
-		GL11.glTranslatef(x, y, 0);
+		GL11.glTranslatef(x, y, getLayer() / 10f);
 		GL11.glBegin(GL11.GL_QUADS);
 		GL11.glTexCoord2f(0, 1);
 		GL11.glVertex2f(-0.5f, -0.5f);
@@ -67,6 +72,14 @@ public abstract class Element {
 		this.x = x;
 	}
 	
+	public int getLayer() {
+		return layer;
+	}
+
+	public void setLayer(int layer) {
+		this.layer = layer;
+	}
+
 	public String toString(){
 		return this.getClass().getName();
 	}

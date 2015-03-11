@@ -7,35 +7,27 @@ import java.nio.IntBuffer;
 
 import org.lwjgl.BufferUtils;
 import org.lwjgl.glfw.GLFW;
+import org.lwjgl.glfw.GLFWKeyCallback;
 import org.lwjgl.glfw.GLFWvidmode;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GLContext;
 
 public class Window {
 	private long window;
+	
+	private Keyboard keyCallback = new Keyboard();
 
 	public Window(String windowTitle) {
+		this();
 		long monitor = GLFW.glfwGetPrimaryMonitor();
-		glfwDefaultWindowHints();
-		glfwWindowHint(GLFW_RED_BITS, GLFWvidmode.REDBITS);
-		glfwWindowHint(GLFW_GREEN_BITS, GLFWvidmode.GREENBITS);
-		glfwWindowHint(GLFW_BLUE_BITS, GLFWvidmode.BLUEBITS);
-		glfwWindowHint(GLFW_REFRESH_RATE, GLFWvidmode.REFRESHRATE);
-		glfwWindowHint(GLFW_VISIBLE, GL11.GL_FALSE);
-		glfwWindowHint(GLFW_RESIZABLE, GL11.GL_TRUE);
 		ByteBuffer vidMode = GLFW.glfwGetVideoMode(monitor);
 		this.window = glfwCreateWindow(GLFWvidmode.width(vidMode),
 				GLFWvidmode.height(vidMode), windowTitle, monitor, 0);
+		glfwSetKeyCallback(window, keyCallback);
 	}
 
 	public Window(String windowTitle, int windowWidth, int windowHeight) {
-		glfwDefaultWindowHints();
-		glfwWindowHint(GLFW_RED_BITS, GLFWvidmode.REDBITS);
-		glfwWindowHint(GLFW_GREEN_BITS, GLFWvidmode.GREENBITS);
-		glfwWindowHint(GLFW_BLUE_BITS, GLFWvidmode.BLUEBITS);
-		glfwWindowHint(GLFW_REFRESH_RATE, GLFWvidmode.REFRESHRATE);
-		glfwWindowHint(GLFW_VISIBLE, GL11.GL_FALSE);
-		glfwWindowHint(GLFW_RESIZABLE, GL11.GL_TRUE);
+		this();
 		this.window = glfwCreateWindow(windowWidth, windowHeight, windowTitle,
 				0, 0);
 
@@ -43,6 +35,18 @@ public class Window {
 		glfwSetWindowPos(this.window,
 				(GLFWvidmode.width(vidmode) - windowWidth) / 2,
 				(GLFWvidmode.height(vidmode) - windowHeight) / 2);
+		glfwSetKeyCallback(window, keyCallback);
+	}
+	
+	private Window()
+	{
+		glfwDefaultWindowHints();
+		glfwWindowHint(GLFW_RED_BITS, GLFWvidmode.REDBITS);
+		glfwWindowHint(GLFW_GREEN_BITS, GLFWvidmode.GREENBITS);
+		glfwWindowHint(GLFW_BLUE_BITS, GLFWvidmode.BLUEBITS);
+		glfwWindowHint(GLFW_REFRESH_RATE, GLFWvidmode.REFRESHRATE);
+		glfwWindowHint(GLFW_VISIBLE, GL11.GL_FALSE);
+		glfwWindowHint(GLFW_RESIZABLE, GL11.GL_TRUE);
 	}
 
 	public void display() {

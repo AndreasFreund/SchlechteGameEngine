@@ -7,11 +7,11 @@ public class GameLoop extends Thread {
 	public GameLoop(SchlechteGameEngine engine) {
 		this.engine = engine;
 		this.setPriority(MAX_PRIORITY);
-		this.start();
 	}
 
 	public void run() {
 		while (true) {
+			engine.getWorld().tick(engine);
 			try {
 				Thread.sleep(50);
 			} catch (InterruptedException e) {

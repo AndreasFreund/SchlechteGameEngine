@@ -12,6 +12,7 @@ public class SchlechteGameEngine {
 
 	private Window window;
 	private Camera camera;
+	private GameLoop gameloop;
 
 	public SchlechteGameEngine(Generator g, String windowTitle) {
 		this(g);
@@ -33,6 +34,7 @@ public class SchlechteGameEngine {
 		this.generator = g;
 		this.world = new World();
 		this.camera = new Camera(0, 0);
+		this.gameloop = new GameLoop(this);
 	}
 
 	public Camera getCamera() {
@@ -48,21 +50,24 @@ public class SchlechteGameEngine {
 	}
 
 	public void start() {
-		mainloop();
+		this.gameloop.start();
+		this.mainloop();
 	}
 
 	private void mainloop() {
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glEnable(GL11.GL_DEPTH_TEST);
 		while (!this.window.isCloseRequested()) {
 			GL11.glClearColor(0, 0, 0, 0);
+			GL11.glClear(GL11.GL_DEPTH_BUFFER_BIT | GL11.GL_COLOR_BUFFER_BIT);
 			GL11.glLoadIdentity();
 			GL11.glTranslatef(-this.camera.getX() - 0.5f,
-					-this.camera.getY() - 0.5f, 0);
+					-this.camera.getY() - 0.5f, -1f);
 			this.world.draw();
 			this.window.update();
 		}
 
-		window.close();
+		this.window.close();
 	}
 
 	public World getWorld() {
