@@ -5,9 +5,10 @@ import static org.lwjgl.glfw.GLFW.*;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 
+import me.andreasfreund.schlechtegameengine.Keyboard;
+
 import org.lwjgl.BufferUtils;
 import org.lwjgl.glfw.GLFW;
-import org.lwjgl.glfw.GLFWKeyCallback;
 import org.lwjgl.glfw.GLFWvidmode;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GLContext;
@@ -61,6 +62,10 @@ public class Window {
 	public void getContext() {
 		glfwMakeContextCurrent(this.window);
 		GLContext.createFromCurrent();
+	}
+
+	public Keyboard getKeyboard() {
+		return keyCallback;
 	}
 
 	public boolean isCloseRequested() {

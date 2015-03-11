@@ -18,7 +18,7 @@ public class SchlechteGameEngine {
 		this(g);
 		this.window = new Window(windowTitle);
 		this.window.display();
-		g.generateWorld(this.world);
+		g.generateWorld(this.world, this);
 	}
 
 	public SchlechteGameEngine(Generator g, String windowTitle,
@@ -26,7 +26,7 @@ public class SchlechteGameEngine {
 		this(g);
 		this.window = new Window(windowTitle, windowWidth, windowHeight);
 		this.window.display();
-		g.generateWorld(this.world);
+		g.generateWorld(this.world, this);
 	}
 
 	private SchlechteGameEngine(Generator g) {
@@ -47,6 +47,10 @@ public class SchlechteGameEngine {
 
 	public Window getWindow() {
 		return this.window;
+	}
+	
+	public Keyboard getKeyboard() {
+		return this.window.getKeyboard();
 	}
 
 	public void start() {

@@ -1,25 +1,24 @@
 package me.andreasfreund.schlechtegameengine.test;
 
-import org.lwjgl.opengl.GL11;
-
 import me.andreasfreund.schlechtegameengine.Generator;
 import me.andreasfreund.schlechtegameengine.SchlechteGameEngine;
 import me.andreasfreund.schlechtegameengine.world.*;
 import me.andreasfreund.schlechtesgame.*;
 
 public class TestWorld implements Generator {
+	private SchlechteGameEngine engine;
+	
 	public static void main(String[] args) {
 		TestWorld testworld = new TestWorld();
-		SchlechteGameEngine engine = new SchlechteGameEngine(testworld,
+		testworld.engine = new SchlechteGameEngine(testworld,
 				"Fenstertitel");
-		engine.getWindow().getContext();
-		engine.getWindow().setScale(32);
-		GL11.glEnable(GL11.GL_TEXTURE_2D);
-		engine.start();
+		testworld.engine.getWindow().getContext();
+		testworld.engine.getWindow().setScale(32);
+		testworld.engine.start();
 	}
 
 	@Override
-	public void generateWorld(World world) {
+	public void generateWorld(World world, SchlechteGameEngine engine) {
 		for (int x = -3; x < 4; x++) {
 			for (int y = -4; y < 4; y++) {
 				Wall wall = new Wall();
@@ -36,11 +35,9 @@ public class TestWorld implements Generator {
 			wall.setLayer(Element.LAYER_BACKGROUND);
 			world.addElement(wall);
 		}
-		Grass g = new Grass();
-		g.setX(0);
-		g.setY(0);
-		g.setLayer(Element.LAYER_OVERLAY);
-		world.addElement(g);
+		Player p = new Player();
+		engine.getCamera().setCameraLockedTo(p);
+		world.addElement(p);
 		world.addElement(new Ghost());
 	}
 }
