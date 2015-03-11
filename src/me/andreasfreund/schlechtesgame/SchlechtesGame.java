@@ -15,7 +15,7 @@ public class SchlechtesGame implements Generator {
 		engine.start();
 	}
 
-	public void generateWorld(World w) {
+	public void generateWorld(World w, SchlechteGameEngine engine) {
 		w.addElement(new me.andreasfreund.schlechtegameengine.world.Element(TextureLoader.getTextureLoader().fetchSprites("wall"))
 		{
 			
