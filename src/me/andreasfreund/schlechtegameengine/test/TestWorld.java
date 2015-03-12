@@ -38,6 +38,8 @@ public class TestWorld implements Generator {
 		Player p = new Player();
 		engine.getCamera().setCameraLockedTo(p);
 		world.addElement(p);
-		world.addElement(new Ghost());
+		Ghost ghost = new Ghost();
+		ghost.setX(15);
+		world.addElement(ghost);
 	}
 }
