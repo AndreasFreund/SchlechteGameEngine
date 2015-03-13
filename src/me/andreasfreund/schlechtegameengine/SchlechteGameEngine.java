@@ -70,8 +70,8 @@ public class SchlechteGameEngine {
 			this.world.draw();
 			this.window.update();
 		}
-
 		this.window.close();
+		System.exit(0);
 	}
 
 	public World getWorld() {
