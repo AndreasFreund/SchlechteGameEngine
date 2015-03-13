@@ -28,7 +28,7 @@ public class Ghost extends AI implements Collidable{
 			this.setY(this.getY()-1);
 			break;
 		}*/
-		if(this.testiteration <3){
+		if(this.testiteration < 1){
 			
 		}else if(player.getX()!=this.getX()){
 			this.setX(this.getX() + (player.getX()>this.getX()?1:-1));
@@ -38,7 +38,7 @@ public class Ghost extends AI implements Collidable{
 			player.setGhost(true);
 		}
 		this.testiteration++;
-		if(this.testiteration>3){
+		if(this.testiteration > 1){
 			this.testiteration = 0;
 		}
 	}

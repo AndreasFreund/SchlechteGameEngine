@@ -24,8 +24,8 @@ public class TestWorld implements Generator {
 		 * wall = new Wall(); wall.setX(x); wall.setY(y);
 		 * wall.setLayer(Element.LAYER_BACKGROUND); world.addElement(wall); } }
 		 */
-		for (int x = -19; x < 20; x++) {
-			for (int y = -19; y < 20; y++) {
+		for (int x = -9; x < 10; x++) {
+			for (int y = -9; y < 10; y++) {
 				Grass wall = new Grass();
 				wall.setX(x);
 				wall.setY(y);
