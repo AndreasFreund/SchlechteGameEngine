@@ -26,4 +26,9 @@ public class SchlechtesGame implements Generator {
 		new SchlechtesGame();
 	}
 
+	@Override
+	public int[] getWorldSize() {
+		return new int[]{20,20};
+	}
+
 }

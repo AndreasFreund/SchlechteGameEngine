@@ -4,7 +4,7 @@ import me.andreasfreund.schlechtegameengine.SchlechteGameEngine;
 import me.andreasfreund.schlechtegameengine.display.TextureLoader;
 import me.andreasfreund.schlechtegameengine.world.*;
 
-public class Ghost extends AI implements Collidable {
+public class Ghost extends AI{
 
 	private int testiteration = 0;
 	private View view;
@@ -39,8 +39,8 @@ public class Ghost extends AI implements Collidable {
 			this.testiteration = 0;
 		}
 	}
-
-	public boolean getCollidable() {
+	
+	public boolean getCollidable(){
 		return true;
 	}
 

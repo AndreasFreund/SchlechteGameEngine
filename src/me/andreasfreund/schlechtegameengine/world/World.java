@@ -6,10 +6,14 @@ import me.andreasfreund.schlechtegameengine.SchlechteGameEngine;
 
 public class World {
 	private ArrayList<Element> elements;
+	private Collisionmap collisionmap;
 	private int sx, sy;
 
-	public World() {
+	public World(int sx, int sy) {
+		this.sx = sx;
+		this.sy = sy;
 		this.elements = new ArrayList<Element>();
+		this.collisionmap = new Collisionmap(this.sx, this.sy);
 	}
 
 	public void addElement(Element obj) {

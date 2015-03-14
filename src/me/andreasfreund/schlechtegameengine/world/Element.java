@@ -122,4 +122,8 @@ public abstract class Element {
 	public int getDisplayY() {
 		return this.displayY;
 	}
+	
+	public boolean getCollidable(){
+		return false;
+	}
 }

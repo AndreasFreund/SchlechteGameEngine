@@ -32,7 +32,8 @@ public class SchlechteGameEngine {
 	private SchlechteGameEngine(Generator g) {
 		Window.setUpLWJGL();
 		this.generator = g;
-		this.world = new World();
+		int[] worldsize = g.getWorldSize();
+		this.world = new World(worldsize[0], worldsize[1]);
 		this.camera = new Camera(0, 0);
 		this.gameloop = new GameLoop(this);
 	}
@@ -48,7 +49,7 @@ public class SchlechteGameEngine {
 	public Window getWindow() {
 		return this.window;
 	}
-	
+
 	public Keyboard getKeyboard() {
 		return this.window.getKeyboard();
 	}

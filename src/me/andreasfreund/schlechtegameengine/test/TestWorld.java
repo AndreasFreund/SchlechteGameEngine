@@ -24,8 +24,8 @@ public class TestWorld implements Generator {
 		 * wall = new Wall(); wall.setX(x); wall.setY(y);
 		 * wall.setLayer(Element.LAYER_BACKGROUND); world.addElement(wall); } }
 		 */
-		for (int x = -9; x < 10; x++) {
-			for (int y = -9; y < 10; y++) {
+		for (int x = -9; x < 11; x++) {
+			for (int y = -9; y < 11; y++) {
 				Grass wall = new Grass();
 				wall.setX(x);
 				wall.setY(y);
@@ -46,7 +46,12 @@ public class TestWorld implements Generator {
 		engine.getCamera().setCameraLockedTo(p);
 		world.addElement(p);
 		Ghost ghost = new Ghost();
-		ghost.setX(15);
+		ghost.setX(9);
 		world.addElement(ghost);
+	}
+
+	@Override
+	public int[] getWorldSize() {
+		return new int[]{19,19};
 	}
 }
