@@ -12,9 +12,9 @@ public class Player extends Element {
 	private Sprite[] player, ghost;
 
 	public Player() {
-		super(TextureLoader.getTextureLoader().fetchSprites("player"));
+		super(TextureLoader.getTextureLoader().fetchSprites("animation"));
 		this.setLayer(LAYER_FOREGROUND);
-		this.player = TextureLoader.getTextureLoader().fetchSprites("player");
+		this.player = TextureLoader.getTextureLoader().fetchSprites("animation");
 		this.ghost = TextureLoader.getTextureLoader().fetchSprites("ghost");
 	}
 
