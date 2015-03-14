@@ -21,10 +21,11 @@ public class World {
 		this.sy = sy;
 	}
 
-	public Element[] getByType(Class<?> type) {
+	public Element[] get(Class<?> type, View view) {
 		ArrayList<Element> elements = new ArrayList<Element>();
 		for (Element o : this.elements) {
-			if (type.isInstance(o)) {
+			if ((type == null || type.isInstance(o))
+					&& (view == null || view.canSee(o))) {
 				elements.add(o);
 			}
 		}
