@@ -16,10 +16,10 @@ public abstract class Element {
 	public static final int LAYER_DEFAULT = 3;
 	public static final int LAYER_FOREGROUND = 2;
 	public static final int LAYER_OVERLAY = 0;
-	
+
 	private Sprite[] sprites;
 	private World world;
-	
+
 	boolean inWorld;
 
 	protected Element(Sprite[] sprites, World world) {
@@ -40,14 +40,12 @@ public abstract class Element {
 	}
 
 	public void draw() {
-		if(this.animation)
-		{
-			this.animationframe = this.animationframe % this.sprites[this.rotation].getFrameCount();
-			this.sprites[this.rotation].bindFrame((int)(this.animationframe));
+		if (this.animation) {
+			this.animationframe = this.animationframe
+					% this.sprites[this.rotation].getFrameCount();
+			this.sprites[this.rotation].bindFrame((int) (this.animationframe));
 			this.animationframe += this.animationspeed;
-		}
-		else
-		{
+		} else {
 			this.sprites[this.rotation].bindFrame(0);
 		}
 		GL11.glPushMatrix();
@@ -64,13 +62,12 @@ public abstract class Element {
 		GL11.glEnd();
 		GL11.glPopMatrix();
 	}
-	
+
 	public void setAnimationEnabled(boolean anim) {
 		this.animation = anim;
 	}
-	
-	public void setAnimationSpeed(float animationspeed)
-	{
+
+	public void setAnimationSpeed(float animationspeed) {
 		this.animationspeed = animationspeed;
 	}
 
@@ -86,26 +83,40 @@ public abstract class Element {
 		return y;
 	}
 
-	public void setY(int y) {
-		if(inWorld)
-			world.getCollisionmap().setOccupied(this.x, this.y, false);
-		this.y = y;
-		if(inWorld)
-			world.getCollisionmap().setOccupied(this.x, this.y, true);
+	public boolean setY(int y) {
+		if (inWorld) {
+			if (!world.getCollisionmap().getOccupied(this.x, y)) {
+				world.getCollisionmap().setOccupied(this.x, this.y, false);
+				this.y = y;
+				world.getCollisionmap().setOccupied(this.x, this.y, false);
+			}else{
+				return false;
+			}
+		} else {
+			this.y = y;
+		}
+		return true;
 	}
 
 	public int getX() {
 		return x;
 	}
 
-	public void setX(int x) {
-		if(inWorld)
-			world.getCollisionmap().setOccupied(this.x, this.y, false);
-		this.x = x;
-		if(inWorld)
-			world.getCollisionmap().setOccupied(this.x, this.y, true);
+	public boolean setX(int x) {
+		if (inWorld) {
+			if (!world.getCollisionmap().getOccupied(x, this.y)) {
+				world.getCollisionmap().setOccupied(this.x, this.y, false);
+				this.x = x;
+				world.getCollisionmap().setOccupied(this.x, this.y, false);
+			}else{
+				return false;
+			}
+		} else {
+			this.x = x;
+		}
+		return true;
 	}
-	
+
 	public int getLayer() {
 		return layer;
 	}
@@ -114,15 +125,15 @@ public abstract class Element {
 		this.layer = layer;
 	}
 
-	public String toString(){
+	public String toString() {
 		return this.getClass().getName();
 	}
-	
-	public void tick(SchlechteGameEngine engine){
-		
+
+	public void tick(SchlechteGameEngine engine) {
+
 	}
-	
-	public void updatePosition(){
+
+	public void updatePosition() {
 		this.displayX = this.x;
 		this.displayY = this.y;
 	}
@@ -134,8 +145,8 @@ public abstract class Element {
 	public int getDisplayY() {
 		return this.displayY;
 	}
-	
-	public boolean getCollidable(){
+
+	public boolean getCollidable() {
 		return false;
 	}
 }
