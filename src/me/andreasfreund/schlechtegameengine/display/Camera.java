@@ -35,14 +35,14 @@ public class Camera {
 
 	public int getX() {
 		if (this.lock != null) {
-			return this.lock.getX();
+			return this.lock.getDisplayX();
 		}
 		return x;
 	}
 
 	public int getY() {
 		if (this.lock != null) {
-			return this.lock.getY();
+			return this.lock.getDisplayY();
 		}
 		return y;
 	}

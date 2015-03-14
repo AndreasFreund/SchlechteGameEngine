@@ -7,6 +7,7 @@ import me.andreasfreund.schlechtegameengine.display.Sprite;
 
 public abstract class Element {
 	private int x = 0, y = 0, layer = LAYER_DEFAULT, rotation = 0;
+	private int displayX, displayY;
 
 	public static final int LAYER_BACKGROUND = 5;
 	public static final int LAYER_DEFAULT = 3;
@@ -34,7 +35,7 @@ public abstract class Element {
 	public void draw() {
 		this.sprites[rotation].bindFrame(0);
 		GL11.glPushMatrix();
-		GL11.glTranslatef(x, y, getLayer() / 10f);
+		GL11.glTranslatef(this.displayX, this.displayY, getLayer() / 10f);
 		GL11.glBegin(GL11.GL_QUADS);
 		GL11.glTexCoord2f(0, 1);
 		GL11.glVertex2f(-0.5f, -0.5f);
@@ -86,5 +87,18 @@ public abstract class Element {
 	
 	public void tick(SchlechteGameEngine engine){
 		
+	}
+	
+	public void updatePosition(){
+		this.displayX = this.x;
+		this.displayY = this.y;
+	}
+
+	public int getDisplayX() {
+		return this.displayX;
+	}
+
+	public int getDisplayY() {
+		return this.displayY;
 	}
 }

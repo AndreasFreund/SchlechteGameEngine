@@ -35,6 +35,7 @@ public class World {
 	public void draw() {
 		for (Element e : elements) {
 			e.draw();
+			e.updatePosition();
 		}
 	}
 
