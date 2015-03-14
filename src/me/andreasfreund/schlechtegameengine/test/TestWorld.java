@@ -35,8 +35,8 @@ public class TestWorld implements Generator {
 		}
 		for (int i = 0; i < 10; i++) {
 			Coin coin = new Coin();
-			coin.setX((int) (Math.random() * 10) - 10);
-			coin.setY((int) (Math.random() * 10) - 10);
+			coin.setX((int) (Math.random() * 19) - 9);
+			coin.setY((int) (Math.random() * 19) - 9);
 			//coin.setLayer(Element.LAYER_FOREGROUND);
 			world.addElement(coin);
 		}
