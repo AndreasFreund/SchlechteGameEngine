@@ -33,8 +33,16 @@ public class TestWorld implements Generator {
 				world.addElement(wall);
 			}
 		}
+		for (int i = 0; i < 10; i++) {
+			Coin coin = new Coin();
+			coin.setX((int) (Math.random() * 10) - 10);
+			coin.setY((int) (Math.random() * 10) - 10);
+			//coin.setLayer(Element.LAYER_FOREGROUND);
+			world.addElement(coin);
+		}
 		Player p = new Player();
-		p.setAnimationEnabled(true, 0.1f);
+		p.setAnimationEnabled(true);
+		p.setAnimationSpeed(0.1f);
 		engine.getCamera().setCameraLockedTo(p);
 		world.addElement(p);
 		Ghost ghost = new Ghost();
