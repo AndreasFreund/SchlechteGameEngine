@@ -61,8 +61,12 @@ public abstract class Element {
 		GL11.glPopMatrix();
 	}
 	
-	public void setAnimationEnabled(boolean anim, float animationspeed) {
+	public void setAnimationEnabled(boolean anim) {
 		this.animation = anim;
+	}
+	
+	public void setAnimationSpeed(float animationspeed)
+	{
 		this.animationspeed = animationspeed;
 	}
 
