@@ -38,9 +38,9 @@ public abstract class Element {
 	public void draw() {
 		if(this.animation)
 		{
+			this.animationframe = this.animationframe % this.sprites[this.rotation].getFrameCount();
 			this.sprites[this.rotation].bindFrame((int)(this.animationframe));
 			this.animationframe += this.animationspeed;
-			this.animationframe = this.animationframe % this.sprites[this.rotation].getFrameCount();
 		}
 		else
 		{
