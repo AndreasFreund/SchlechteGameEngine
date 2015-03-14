@@ -18,26 +18,24 @@ public class TestWorld implements Generator {
 
 	@Override
 	public void generateWorld(World world, SchlechteGameEngine engine) {
-		world.setSize(50, 50);
-		/*
-		 * for (int x = -3; x < 4; x++) { for (int y = -4; y < 4; y++) { Wall
-		 * wall = new Wall(); wall.setX(x); wall.setY(y);
-		 * wall.setLayer(Element.LAYER_BACKGROUND); world.addElement(wall); } }
-		 */
 		for (int x = -9; x < 10; x++) {
 			for (int y = -9; y < 10; y++) {
-				Grass wall = new Grass(world);
-				wall.setX(x);
-				wall.setY(y);
-				wall.setLayer(Element.LAYER_BACKGROUND);
-				world.addElement(wall);
+				Grass grass = new Grass(world);
+				grass.setX(x);
+				grass.setY(y);
+				grass.setLayer(Element.LAYER_BACKGROUND);
+				world.addElement(grass);
 			}
 		}
+		Wall wall = new Wall(world);
+		wall.setX(0);
+		wall.setY(1);
+		world.addElement(wall);
 		for (int i = 0; i < 10; i++) {
 			Coin coin = new Coin(world);
 			coin.setX((int) (Math.random() * 19) - 9);
 			coin.setY((int) (Math.random() * 19) - 9);
-			//coin.setLayer(Element.LAYER_FOREGROUND);
+			// coin.setLayer(Element.LAYER_FOREGROUND);
 			world.addElement(coin);
 		}
 		Player p = new Player(world);
@@ -52,6 +50,6 @@ public class TestWorld implements Generator {
 
 	@Override
 	public int[] getWorldSize() {
-		return new int[]{19,19};
+		return new int[] { 19, 19 };
 	}
 }

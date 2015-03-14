@@ -40,5 +40,9 @@ public class Player extends Element {
 	public void setGhost(boolean ghost) {
 		this.setSprites(ghost ? this.ghost : this.player);
 	}
+	
+	public boolean getCollidable(){
+		return true;
+	}
 
 }

@@ -9,4 +9,8 @@ public class Wall extends Element{
 		super(TextureLoader.getTextureLoader().fetchSprites("wall"), world);
 	}
 	
+	public boolean getCollidable(){
+		return true;
+	}
+	
 }

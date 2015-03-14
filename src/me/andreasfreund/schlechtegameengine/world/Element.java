@@ -20,7 +20,7 @@ public abstract class Element {
 	private Sprite[] sprites;
 	private World world;
 
-	boolean inWorld;
+	private boolean inWorld;
 
 	protected Element(Sprite[] sprites, World world) {
 		this.setSprites(sprites);
@@ -78,17 +78,24 @@ public abstract class Element {
 	public void setRotation(int rotation) {
 		this.rotation = (rotation % 4) + 4;
 	}
+	
+	public void setInWorld(boolean inWorld){
+		this.inWorld = inWorld;
+		if (this.getCollidable() && this.inWorld){
+			this.world.getCollisionmap().setOccupied(this.x, this.y, true);
+		}
+	}
 
 	public int getY() {
 		return y;
 	}
 
 	public boolean setY(int y) {
-		if (inWorld) {
-			if (!world.getCollisionmap().getOccupied(this.x, y)) {
-				world.getCollisionmap().setOccupied(this.x, this.y, false);
+		if (this.getCollidable() && this.inWorld) {
+			if (!this.world.getCollisionmap().getOccupied(this.x, y)) {
+				this.world.getCollisionmap().setOccupied(this.x, this.y, false);
 				this.y = y;
-				world.getCollisionmap().setOccupied(this.x, this.y, false);
+				this.world.getCollisionmap().setOccupied(this.x, this.y, true);
 			}else{
 				return false;
 			}
@@ -103,11 +110,11 @@ public abstract class Element {
 	}
 
 	public boolean setX(int x) {
-		if (inWorld) {
-			if (!world.getCollisionmap().getOccupied(x, this.y)) {
-				world.getCollisionmap().setOccupied(this.x, this.y, false);
+		if (this.getCollidable() && this.inWorld) {
+			if (!this.world.getCollisionmap().getOccupied(x, this.y)) {
+				this.world.getCollisionmap().setOccupied(this.x, this.y, false);
 				this.x = x;
-				world.getCollisionmap().setOccupied(this.x, this.y, false);
+				this.world.getCollisionmap().setOccupied(this.x, this.y, false);
 			}else{
 				return false;
 			}

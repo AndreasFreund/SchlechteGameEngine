@@ -18,14 +18,7 @@ public class World {
 
 	public void addElement(Element obj) {
 		this.elements.add(obj);
-		obj.inWorld = true;
-		obj.setX(obj.getX());
-		obj.setY(obj.getY());
-	}
-
-	public void setSize(int sx, int sy) {
-		this.sx = sx;
-		this.sy = sy;
+		obj.setInWorld(true);
 	}
 
 	public Element[] get(Class<?> type, View view) {

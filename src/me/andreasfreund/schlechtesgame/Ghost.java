@@ -11,6 +11,7 @@ public class Ghost extends AI{
 
 	public Ghost(World world) {
 		super(TextureLoader.getTextureLoader().fetchSprites("ghost"), world);
+		this.setLayer(Element.LAYER_FOREGROUND);
 		this.view = new View(this, 5);
 	}
 
@@ -38,10 +39,6 @@ public class Ghost extends AI{
 		if (this.testiteration > 1) {
 			this.testiteration = 0;
 		}
-	}
-	
-	public boolean getCollidable(){
-		return true;
 	}
 
 }
