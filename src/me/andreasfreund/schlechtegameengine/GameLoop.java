@@ -10,10 +10,12 @@ public class GameLoop extends Thread {
 	}
 
 	public void run() {
+		long prevtime;
 		while (true) {
+			prevtime = System.currentTimeMillis();
 			engine.getWorld().tick(engine);
 			try {
-				Thread.sleep(50);
+				Thread.sleep(50 - System.currentTimeMillis() + prevtime);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
