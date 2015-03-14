@@ -1,12 +1,13 @@
 package me.andreasfreund.schlechtegameengine.display;
 
 import java.io.File;
-import java.io.IOException;
+import java.util.HashMap;
 
 import javax.imageio.ImageIO;
 
 public class TextureLoader {
 	private static TextureLoader instance;
+	private static HashMap<String, Sprite[]> textures = new HashMap<String, Sprite[]>();
 
 	public static TextureLoader getTextureLoader() {
 		if (instance == null) {
@@ -20,6 +21,10 @@ public class TextureLoader {
 	}
 
 	public Sprite[] fetchSprites(String object) {
+		if(textures.containsKey(object))
+		{
+			return textures.get(object);
+		}
 		File[] files = new File(TextureLoader.class.getClassLoader()
 				.getResource("assets/textures").getPath()).listFiles();
 		Sprite[] sprites = new Sprite[4];
@@ -46,6 +51,7 @@ public class TextureLoader {
 				}
 			}
 		}
+		textures.put(object, sprites);
 		return sprites;
 	}
 }
