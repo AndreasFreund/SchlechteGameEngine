@@ -8,6 +8,9 @@ import me.andreasfreund.schlechtegameengine.display.Sprite;
 public abstract class Element {
 	private int x = 0, y = 0, layer = LAYER_DEFAULT, rotation = 0;
 	private int displayX, displayY;
+	private boolean animation;
+	private float animationframe;
+	private float animationspeed;
 
 	public static final int LAYER_BACKGROUND = 5;
 	public static final int LAYER_DEFAULT = 3;
@@ -33,9 +36,18 @@ public abstract class Element {
 	}
 
 	public void draw() {
-		this.sprites[rotation].bindFrame(0);
+		if(this.animation)
+		{
+			this.sprites[this.rotation].bindFrame((int)(this.animationframe));
+			this.animationframe += this.animationspeed;
+			this.animationframe = this.animationframe % this.sprites[this.rotation].getFrameCount();
+		}
+		else
+		{
+			this.sprites[this.rotation].bindFrame(0);
+		}
 		GL11.glPushMatrix();
-		GL11.glTranslatef(this.displayX, this.displayY, getLayer() / 10f);
+		GL11.glTranslatef(this.displayX, this.displayY, this.getLayer() / 10f);
 		GL11.glBegin(GL11.GL_QUADS);
 		GL11.glTexCoord2f(0, 1);
 		GL11.glVertex2f(-0.5f, -0.5f);
@@ -47,6 +59,11 @@ public abstract class Element {
 		GL11.glVertex2f(0.5f, -0.5f);
 		GL11.glEnd();
 		GL11.glPopMatrix();
+	}
+	
+	public void setAnimationEnabled(boolean anim, float animationspeed) {
+		this.animation = anim;
+		this.animationspeed = animationspeed;
 	}
 
 	public int getRotation() {

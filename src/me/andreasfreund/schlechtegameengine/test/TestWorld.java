@@ -34,6 +34,7 @@ public class TestWorld implements Generator {
 			}
 		}
 		Player p = new Player();
+		p.setAnimationEnabled(true, 0.1f);
 		engine.getCamera().setCameraLockedTo(p);
 		world.addElement(p);
 		Ghost ghost = new Ghost();
