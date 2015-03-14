@@ -5,8 +5,8 @@ import me.andreasfreund.schlechtegameengine.world.*;
 
 public class Grass extends Element {
 
-	public Grass() {
-		super(TextureLoader.getTextureLoader().fetchSprites("grass"));
+	public Grass(World world) {
+		super(TextureLoader.getTextureLoader().fetchSprites("grass"), world);
 	}
 
 }

@@ -9,8 +9,8 @@ public class Ghost extends AI{
 	private int testiteration = 0;
 	private View view;
 
-	public Ghost() {
-		super(TextureLoader.getTextureLoader().fetchSprites("ghost"));
+	public Ghost(World world) {
+		super(TextureLoader.getTextureLoader().fetchSprites("ghost"), world);
 		this.view = new View(this, 5);
 	}
 

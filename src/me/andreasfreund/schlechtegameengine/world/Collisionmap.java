@@ -9,4 +9,8 @@ public class Collisionmap {
 		this.sy = sy;
 		this.collisionmap = new boolean[sx + 2][sy + 2];
 	}
+
+	public void setOccupied(int x, int y, boolean b) {
+		this.collisionmap[x + sx / 2][y + sy / 2] = b;
+	}
 }

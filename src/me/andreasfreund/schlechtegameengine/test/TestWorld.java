@@ -26,7 +26,7 @@ public class TestWorld implements Generator {
 		 */
 		for (int x = -9; x < 11; x++) {
 			for (int y = -9; y < 11; y++) {
-				Grass wall = new Grass();
+				Grass wall = new Grass(world);
 				wall.setX(x);
 				wall.setY(y);
 				wall.setLayer(Element.LAYER_BACKGROUND);
@@ -34,18 +34,18 @@ public class TestWorld implements Generator {
 			}
 		}
 		for (int i = 0; i < 10; i++) {
-			Coin coin = new Coin();
+			Coin coin = new Coin(world);
 			coin.setX((int) (Math.random() * 19) - 9);
 			coin.setY((int) (Math.random() * 19) - 9);
 			//coin.setLayer(Element.LAYER_FOREGROUND);
 			world.addElement(coin);
 		}
-		Player p = new Player();
+		Player p = new Player(world);
 		p.setAnimationEnabled(true);
 		p.setAnimationSpeed(0.1f);
 		engine.getCamera().setCameraLockedTo(p);
 		world.addElement(p);
-		Ghost ghost = new Ghost();
+		Ghost ghost = new Ghost(world);
 		ghost.setX(9);
 		world.addElement(ghost);
 	}

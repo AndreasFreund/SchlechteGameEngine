@@ -18,6 +18,9 @@ public class World {
 
 	public void addElement(Element obj) {
 		this.elements.add(obj);
+		obj.inWorld = true;
+		obj.setX(obj.getX());
+		obj.setY(obj.getY());
 	}
 
 	public void setSize(int sx, int sy) {
@@ -47,5 +50,9 @@ public class World {
 		for (Element e : elements) {
 			e.tick(engine);
 		}
+	}
+
+	public Collisionmap getCollisionmap() {
+		return this.collisionmap;
 	}
 }

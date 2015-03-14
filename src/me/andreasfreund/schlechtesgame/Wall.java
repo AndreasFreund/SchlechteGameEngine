@@ -5,8 +5,8 @@ import me.andreasfreund.schlechtegameengine.world.*;
 
 public class Wall extends Element{
 
-	public Wall() {
-		super(TextureLoader.getTextureLoader().fetchSprites("wall"));
+	public Wall(World world) {
+		super(TextureLoader.getTextureLoader().fetchSprites("wall"), world);
 	}
 	
 }

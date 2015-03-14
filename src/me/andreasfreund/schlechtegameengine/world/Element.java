@@ -18,9 +18,13 @@ public abstract class Element {
 	public static final int LAYER_OVERLAY = 0;
 	
 	private Sprite[] sprites;
+	private World world;
+	
+	boolean inWorld;
 
-	protected Element(Sprite[] sprites) {
+	protected Element(Sprite[] sprites, World world) {
 		this.setSprites(sprites);
+		this.world = world;
 	}
 
 	protected void setSprites(Sprite[] sprites) {
@@ -83,7 +87,11 @@ public abstract class Element {
 	}
 
 	public void setY(int y) {
+		if(inWorld)
+			world.getCollisionmap().setOccupied(this.x, this.y, false);
 		this.y = y;
+		if(inWorld)
+			world.getCollisionmap().setOccupied(this.x, this.y, true);
 	}
 
 	public int getX() {
@@ -91,7 +99,11 @@ public abstract class Element {
 	}
 
 	public void setX(int x) {
+		if(inWorld)
+			world.getCollisionmap().setOccupied(this.x, this.y, false);
 		this.x = x;
+		if(inWorld)
+			world.getCollisionmap().setOccupied(this.x, this.y, true);
 	}
 	
 	public int getLayer() {
