@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 
 import org.lwjgl.BufferUtils;
-import org.lwjgl.opengl.GL11;
 
 public class Sprite {
 	private ArrayList<BufferedImage> frames;

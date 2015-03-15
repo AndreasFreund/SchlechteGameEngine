@@ -42,7 +42,9 @@ public class Player extends Element {
 	}
 	
 	public boolean getCollidable(){
-		return true;
+		return false;
+		//return true;
+		//TODO: Specify Shape
 	}
 
 }

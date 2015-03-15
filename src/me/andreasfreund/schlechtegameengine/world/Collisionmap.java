@@ -10,18 +10,33 @@ public class Collisionmap {
 		this.collisionmap = new boolean[sx][sy];
 	}
 
-	public boolean getOccupied(int x, int y) {
+	public boolean getOccupied(int x, int y, Shape shape) {
 		int mappedx = x + (int) Math.floor(this.sx / 2);
 		int mappedy = y + (int) Math.floor(this.sy / 2);
-		if(mappedx >= this.sx || mappedx < 0 || mappedy >= this.sy || mappedy < 0){
-			return true;
+		boolean[][] space = shape.getShape();
+		for (int cx = 0; cx < space.length; cx++) {
+			boolean[] line = space[cx];
+			for (int cy = 0; cy < line.length; cx++) {
+				if (line[cy]) {
+					if (mappedx + cx <= this.sx || mappedx + cx < 0
+							|| mappedy + cy >= this.sy || mappedy + cy < 0) {
+						return this.collisionmap[mappedx + cx][mappedy + cy];
+					} else {
+						return false;
+					}
+				}
+			}
 		}
-		return this.collisionmap[mappedx][mappedy];
+		return true;
 	}
 
-	public void setOccupied(int x, int y, boolean b) {
+	public void setOccupied(int x, int y, Shape shape, boolean b) {
 		int mappedx = x + (int) Math.floor(this.sx / 2);
 		int mappedy = y + (int) Math.floor(this.sy / 2);
 		this.collisionmap[mappedx][mappedy] = b;
+	}
+
+	public boolean isPointInWorld(int x, int y) {
+		return (x > 0 && x < sx && y > 0 && y < sy);
 	}
 }

@@ -10,7 +10,7 @@ public class Wall extends Element{
 	}
 	
 	public boolean getCollidable(){
-		return true;
+		return false;//TODO: Add Shape
 	}
 	
 }
