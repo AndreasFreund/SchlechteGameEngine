@@ -18,7 +18,7 @@ public class Collisionmap {
 			boolean[] line = space[cx];
 			for (int cy = 0; cy < line.length; cx++) {
 				if (line[cy]) {
-					if (mappedx + cx <= this.sx || mappedx + cx < 0
+					if (mappedx + cx >= this.sx || mappedx + cx < 0
 							|| mappedy + cy >= this.sy || mappedy + cy < 0) {
 						return this.collisionmap[mappedx + cx][mappedy + cy];
 					} else {
@@ -33,7 +33,16 @@ public class Collisionmap {
 	public void setOccupied(int x, int y, Shape shape, boolean b) {
 		int mappedx = x + (int) Math.floor(this.sx / 2);
 		int mappedy = y + (int) Math.floor(this.sy / 2);
-		this.collisionmap[mappedx][mappedy] = b;
+		boolean[][] space = shape.getShape();
+		for (int cx = 0; cx < space.length; cx++) {
+			boolean[] line = space[cx];
+			for (int cy = 0; cy < line.length; cy++) {
+				if (mappedx + cx <= this.sx || mappedx + cx < 0
+						|| mappedy + cy >= this.sy || mappedy + cy < 0) {
+					this.collisionmap[mappedx + cx][mappedy + cy] = line[cy];
+				}
+			}
+		}
 	}
 
 	public boolean isPointInWorld(int x, int y) {

@@ -6,6 +6,7 @@ import me.andreasfreund.schlechtegameengine.SchlechteGameEngine;
 import me.andreasfreund.schlechtegameengine.display.Sprite;
 import me.andreasfreund.schlechtegameengine.display.TextureLoader;
 import me.andreasfreund.schlechtegameengine.world.Element;
+import me.andreasfreund.schlechtegameengine.world.Shape;
 import me.andreasfreund.schlechtegameengine.world.World;
 
 public class Player extends Element {
@@ -13,9 +14,11 @@ public class Player extends Element {
 	private Sprite[] player, ghost;
 
 	public Player(World world) {
-		super(TextureLoader.getTextureLoader().fetchSprites("animation"), world);
+		super(TextureLoader.getTextureLoader().fetchSprites("animation"),
+				new Shape(4, 4), world);
 		this.setLayer(LAYER_FOREGROUND);
-		this.player = TextureLoader.getTextureLoader().fetchSprites("animation");
+		this.player = TextureLoader.getTextureLoader()
+				.fetchSprites("animation");
 		this.ghost = TextureLoader.getTextureLoader().fetchSprites("ghost");
 	}
 
@@ -40,11 +43,11 @@ public class Player extends Element {
 	public void setGhost(boolean ghost) {
 		this.setSprites(ghost ? this.ghost : this.player);
 	}
-	
-	public boolean getCollidable(){
-		return false;
-		//return true;
-		//TODO: Specify Shape
+
+	public boolean getCollidable() {
+		// return false;
+		return true;
+		// TODO: Specify Shape
 	}
 
 }

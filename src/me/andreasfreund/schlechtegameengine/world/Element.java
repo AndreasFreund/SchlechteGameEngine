@@ -105,11 +105,11 @@ public abstract class Element {
 
 	public boolean setY(int y) {
 		if (this.inWorld && this.getCollidable()) {
-			if (!this.world.getCollisionmap().getOccupied(this.x, y, shape)) {
-				this.world.getCollisionmap().setOccupied(this.x, this.y, shape,
+			if (!this.world.getCollisionmap().getOccupied(this.x, y, this.shape)) {
+				this.world.getCollisionmap().setOccupied(this.x, this.y, this.shape,
 						false);
 				this.y = y;
-				this.world.getCollisionmap().setOccupied(this.x, this.y, shape,
+				this.world.getCollisionmap().setOccupied(this.x, this.y, this.shape,
 						false);
 				return true;
 			} else {
@@ -127,11 +127,11 @@ public abstract class Element {
 
 	public boolean setX(int x) {
 		if (this.inWorld && this.getCollidable()) {
-			if (!this.world.getCollisionmap().getOccupied(x, this.y, shape)) {
-				this.world.getCollisionmap().setOccupied(this.x, this.y, shape,
+			if (!this.world.getCollisionmap().getOccupied(x, this.y, this.shape)) {
+				this.world.getCollisionmap().setOccupied(this.x, this.y, this.shape,
 						false);
 				this.x = x;
-				this.world.getCollisionmap().setOccupied(this.x, this.y, shape,
+				this.world.getCollisionmap().setOccupied(this.x, this.y, this.shape,
 						false);
 				return true;
 			} else {
