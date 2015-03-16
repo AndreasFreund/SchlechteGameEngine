@@ -14,11 +14,13 @@ public class Player extends Element {
 	private Sprite[] player, ghost;
 
 	public Player(World world) {
-		super(TextureLoader.getTextureLoader().fetchSprites("animation"),
-				new Shape(4, 4), world);
+		super(TextureLoader.getTextureLoader().fetchSprites("player"),
+				new Shape(1, 1), world);
 		this.setLayer(LAYER_FOREGROUND);
 		this.player = TextureLoader.getTextureLoader()
-				.fetchSprites("animation");
+				.fetchSprites("player");
+		//this.setAnimationEnabled(true);
+		//this.setAnimationSpeed(0.1f);
 		this.ghost = TextureLoader.getTextureLoader().fetchSprites("ghost");
 	}
 

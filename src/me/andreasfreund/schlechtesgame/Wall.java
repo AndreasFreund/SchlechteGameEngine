@@ -6,11 +6,11 @@ import me.andreasfreund.schlechtegameengine.world.*;
 public class Wall extends Element{
 
 	public Wall(World world) {
-		super(TextureLoader.getTextureLoader().fetchSprites("wall"), world);
+		super(TextureLoader.getTextureLoader().fetchSprites("wall"), new Shape(1,1), world);
 	}
 	
 	public boolean getCollidable(){
-		return false;//TODO: Add Shape
+		return true;
 	}
 	
 }

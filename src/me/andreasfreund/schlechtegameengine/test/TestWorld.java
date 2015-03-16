@@ -39,8 +39,6 @@ public class TestWorld implements Generator {
 			world.addElement(coin);
 		}
 		Player p = new Player(world);
-		p.setAnimationEnabled(true);
-		p.setAnimationSpeed(0.1f);
 		engine.getCamera().setCameraLockedTo(p);
 		world.addElement(p);
 		Ghost ghost = new Ghost(world);
