@@ -17,6 +17,8 @@ public class Player extends Element {
 		super(TextureLoader.getTextureLoader().fetchSprites("player"),
 				new Shape(1, 1), world);
 		this.setLayer(LAYER_FOREGROUND);
+		this.setSize(4,4);
+		this.setScale(4);
 		this.player = TextureLoader.getTextureLoader()
 				.fetchSprites("player");
 		//this.setAnimationEnabled(true);

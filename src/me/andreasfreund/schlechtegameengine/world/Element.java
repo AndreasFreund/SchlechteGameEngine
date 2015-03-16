@@ -6,18 +6,18 @@ import me.andreasfreund.schlechtegameengine.SchlechteGameEngine;
 import me.andreasfreund.schlechtegameengine.display.Sprite;
 
 public abstract class Element {
-	private int x = 0, y = 0, layer = LAYER_DEFAULT, rotation = 0;
-	private int displayX, displayY;
-	private boolean animation;
-	private float animationframe;
-	private float animationspeed;
-
-	private Shape shape;
-
 	public static final int LAYER_BACKGROUND = 5;
 	public static final int LAYER_DEFAULT = 3;
 	public static final int LAYER_FOREGROUND = 2;
 	public static final int LAYER_OVERLAY = 0;
+
+	private int x = 0, y = 0, layer = LAYER_DEFAULT, rotation = 0, sizeX = 1,
+			sizeY = 1, scale = 1;
+	private int displayX, displayY;
+	private boolean animation;
+	private float animationframe, animationspeed;
+
+	private Shape shape;
 
 	private Sprite[] sprites;
 	private World world;
@@ -58,14 +58,14 @@ public abstract class Element {
 		GL11.glPushMatrix();
 		GL11.glTranslatef(this.displayX, this.displayY, this.getLayer() / 10f);
 		GL11.glBegin(GL11.GL_QUADS);
-		GL11.glTexCoord2f(0, 1);
+		GL11.glTexCoord2f(0, 1 * sizeY / scale);
 		GL11.glVertex2f(-0.5f, -0.5f);
 		GL11.glTexCoord2f(0, 0);
-		GL11.glVertex2f(-0.5f, 0.5f);
-		GL11.glTexCoord2f(1, 0);
-		GL11.glVertex2f(0.5f, 0.5f);
-		GL11.glTexCoord2f(1, 1);
-		GL11.glVertex2f(0.5f, -0.5f);
+		GL11.glVertex2f(-0.5f, 0.5f + 1f * (sizeY - 1));
+		GL11.glTexCoord2f(1 * sizeX / scale, 0);
+		GL11.glVertex2f(0.5f + 1f * (sizeX - 1), 0.5f + 1f * (sizeY - 1));
+		GL11.glTexCoord2f(1 * sizeX / scale, 1 * sizeY / scale);
+		GL11.glVertex2f(0.5f + 1f * (sizeX - 1), -0.5f);
 		GL11.glEnd();
 		GL11.glPopMatrix();
 	}
@@ -105,12 +105,13 @@ public abstract class Element {
 
 	public boolean setY(int y) {
 		if (this.inWorld && this.getCollidable()) {
-			if (!this.world.getCollisionmap().getOccupied(this.x, y, this.shape)) {
-				this.world.getCollisionmap().setOccupied(this.x, this.y, this.shape,
-						false);
+			if (!this.world.getCollisionmap()
+					.getOccupied(this.x, y, this.shape)) {
+				this.world.getCollisionmap().setOccupied(this.x, this.y,
+						this.shape, false);
 				this.y = y;
-				this.world.getCollisionmap().setOccupied(this.x, this.y, this.shape,
-						false);
+				this.world.getCollisionmap().setOccupied(this.x, this.y,
+						this.shape, false);
 				return true;
 			} else {
 				return false;
@@ -127,12 +128,13 @@ public abstract class Element {
 
 	public boolean setX(int x) {
 		if (this.inWorld && this.getCollidable()) {
-			if (!this.world.getCollisionmap().getOccupied(x, this.y, this.shape)) {
-				this.world.getCollisionmap().setOccupied(this.x, this.y, this.shape,
-						false);
+			if (!this.world.getCollisionmap()
+					.getOccupied(x, this.y, this.shape)) {
+				this.world.getCollisionmap().setOccupied(this.x, this.y,
+						this.shape, false);
 				this.x = x;
-				this.world.getCollisionmap().setOccupied(this.x, this.y, this.shape,
-						false);
+				this.world.getCollisionmap().setOccupied(this.x, this.y,
+						this.shape, false);
 				return true;
 			} else {
 				return false;
@@ -174,5 +176,22 @@ public abstract class Element {
 
 	public boolean getCollidable() {
 		return false;
+	}
+
+	public void setSize(int x, int y) {
+		this.sizeX = x;
+		this.sizeY = y;
+	}
+
+	public int[] getSize() {
+		return new int[] { this.sizeX, this.sizeY };
+	}
+
+	public void setScale(int scale) {
+		this.scale = scale;
+	}
+
+	public int getScale() {
+		return this.scale;
 	}
 }

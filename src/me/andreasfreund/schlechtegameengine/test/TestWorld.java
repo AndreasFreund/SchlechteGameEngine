@@ -12,21 +12,19 @@ public class TestWorld implements Generator {
 		TestWorld testworld = new TestWorld();
 		testworld.engine = new SchlechteGameEngine(testworld, "Fenstertitel");
 		testworld.engine.getWindow().getContext();
-		testworld.engine.getWindow().setScale(32);
+		testworld.engine.getWindow().setScale(128);
 		testworld.engine.start();
 	}
 
 	@Override
 	public void generateWorld(World world, SchlechteGameEngine engine) {
-		for (int x = -9; x < 10; x++) {
-			for (int y = -9; y < 10; y++) {
-				Grass grass = new Grass(world);
-				grass.setX(x);
-				grass.setY(y);
-				grass.setLayer(Element.LAYER_BACKGROUND);
-				world.addElement(grass);
-			}
-		}
+		Grass grass = new Grass(world);
+		grass.setX(-32);
+		grass.setY(-32);
+		grass.setSize(65, 65);
+		grass.setScale(4);
+		grass.setLayer(Element.LAYER_BACKGROUND);
+		world.addElement(grass);
 		Wall wall = new Wall(world);
 		wall.setX(0);
 		wall.setY(1);
@@ -43,11 +41,13 @@ public class TestWorld implements Generator {
 		world.addElement(p);
 		Ghost ghost = new Ghost(world);
 		ghost.setX(9);
+		ghost.setSize(8,8);
+		ghost.setScale(8);
 		world.addElement(ghost);
 	}
 
 	@Override
 	public int[] getWorldSize() {
-		return new int[] { 19, 19 };
+		return new int[] { 65, 65 };
 	}
 }
